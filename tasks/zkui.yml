@@ -1,0 +1,25 @@
+
+- name: --- Upload zkui to server----
+  copy: 
+    src: zkui.tar.gz
+    dest: /opt/
+
+- name: --- Setup zkui ---
+  shell: |
+   cd /opt
+   tar xzf zkui.tar.gz
+   cd /opt/zkui
+   ln -s zkui-2.0-SNAPSHOT-jar-with-dependencies.jar zkui
+  ignore_errors: true
+
+- name: --- Setup config-zkui -----
+  template: src=config-zkui.j2 dest=/opt/zkui/config.cfg
+
+
+- name: --- Create Systemd ZKui ---
+  template: src=systemd-zkui.j2 dest=/etc/systemd/system/zkui.service
+
+- name: --- Start zkui ---
+  shell: |
+   systemd deamon-reload
+   systemctl start zkui.service

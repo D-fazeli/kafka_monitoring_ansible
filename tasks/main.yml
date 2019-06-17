@@ -1,0 +1,40 @@
+---
+# tasks file for roles/general-config
+
+- name: --- mv old repo ---
+  shell: |
+     mkdir /etc/yum.repos.local/old_repo
+     cd /etc/yum.repos.local/
+     mv `ls -p | grep -v \/` old_repo/
+  ignore_errors: true   
+
+- name: --- config repository ---
+  copy:
+    dest: "/etc/yum.repos.local/backend.repo"
+    content: |
+       [backend_repo]
+       name= backend_repo
+       baseurl={{ general_config.url_repo }}
+       gpgcheck=0
+       enabled=1
+       
+- name: --- refresh repolist ---
+  shell: |
+     yum clean all
+     rm -fr /var/cache/yum/
+
+- name: --- install pakege ---
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - wget 
+    - unzip
+
+- include_tasks: kafka-manager.yml
+  
+#- include_tasks: zkui.yml
+  
+
+
+

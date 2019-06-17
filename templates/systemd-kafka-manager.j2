@@ -1,0 +1,14 @@
+[Unit]
+Description=Kafka Manager
+After=network.target
+
+[Service]
+#Type=simple
+#User=kafka-manager
+#Group=kafka-manager
+
+ExecStart=/opt/kafka-manager/bin/kafka-manager  -Dconfig.file=/opt/kafka-manager/conf/application.conf -Dhttp.port=9000
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

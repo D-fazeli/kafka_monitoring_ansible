@@ -1,0 +1,12 @@
+[Unit]
+Description=ZkUI
+After=networks.target
+Wants=networks.target
+
+[Service]
+WorkingDirectory=/opt/zkui/
+ExecStart=/usr/bin/java -jar zkui-2.0-SNAPSHOT-jar-with-dependencies.jar
+Restar=on-failure
+
+[Install]
+WantedBy=multi-user.target

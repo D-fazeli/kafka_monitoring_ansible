@@ -1,0 +1,50 @@
+
+---
+
+general_config:
+  cluster_status: false
+  url_repo: http://172.16.1.66/backend_repo
+kafka_monitoring:
+  name: kafka-manager
+  ver: 1.3.3.21
+  extention: zip
+#  --------------- BACKEND_NODES_CONFIGURATION ----------------
+kafka_monitoring_node:
+   node1:
+     ssh_ip: 172.16.70.4
+     internal_ip: 172.16.70.4
+     port: 9092
+    
+kafka_nodes:
+  node1:
+   ssh_ip: 172.16.70.4
+   internal_ip: 172.16.70.4
+   port: 9092
+   
+  node2:
+   ssh_ip: 172.16.70.4
+   internal_ip: 172.16.70.4
+   port: 9092
+   
+  node3: 
+   ssh_ip: 172.16.70.4
+   internal_ip: 172.16.70.4
+   port: 9092
+   
+zookeeper_nodes:
+  node1:
+    ssh_ip: 172.16.70.4
+    internal_ip: 172.16.70.4
+    port: 2181
+      
+  node2:
+    ssh_ip: 172.16.1.205
+    internal_ip: 172.16.1.205
+    port: 2181
+    
+  node3:
+    ssh_ip: 172.16.1.206
+    internal_ip: 172.16.1.206
+    port: 2181
+    
+  
